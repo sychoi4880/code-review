@@ -9,15 +9,17 @@ class Timer extends Component {
 
     this.state = {
       date: moment(),
-      expireDate: moment('2018-07-04T17:00:00+09:00'),
+      expireDate: moment(props.expireDate),
     };
 
     this.nTimer = setInterval(this.tick, 1000);
   }
 
   tick = () => {
+    console.log('1');
     if (moment.duration(moment().diff(this.state.expireDate)).asSeconds() > 0) {
       alert('종료되었습니다.');
+      clearInterval(this.nTimer);
     }
     this.forceUpdate();
   };
